@@ -1,8 +1,19 @@
+// src/components/TaskItem.js
 import React from 'react';
+import { useDraggable } from '@dnd-kit/core';
 
 const TaskItem = ({ task, deleteTask, toggleTaskCompletion }) => {
+  const { attributes, listeners, setNodeRef, transform, transition } = useDraggable({
+    id: task.id.toString(),
+  });
+
+  const style = {
+    transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
+    transition,
+  };
+
   return (
-    <div className="bg-white p-4 rounded shadow mb-4">
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners} className="bg-white p-4 rounded shadow mb-4">
       <div className="flex justify-between">
         <h3 className={`font-bold ${task.completed ? 'line-through' : ''}`}>{task.name}</h3>
         <button

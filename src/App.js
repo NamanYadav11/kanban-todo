@@ -1,3 +1,4 @@
+// src/App.js
 import React, { useState, useEffect } from 'react';
 import TaskForm from './components/TaskForm';
 import KanbanBoard from './components/KanbanBoard';
@@ -43,6 +44,7 @@ const App = () => {
       <SortAndSearch tasks={tasks} setFilteredTasks={setFilteredTasks} />
       <KanbanBoard
         tasks={filteredTasks}
+        setTasks={setTasks}
         deleteTask={deleteTask}
         toggleTaskCompletion={toggleTaskCompletion}
       />
